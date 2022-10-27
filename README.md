@@ -1,7 +1,10 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 # Release Note
-* **update 22.10.27** version 0.0.0
+* **update 22.10.27** version 0.0.0  
 신규 지원: L298N 모터 드라이버, I2C RTC, I2C LCD, 초음파 센서 [**지원 부품 더보기**](#step-3-stepmaker-패키지-지원-부품)
+
+* **update 22.10.28** version 0.0.1  
+신규 지원: Pico 내장 온도 센서, Pico 내장 LED [**지원 부품 더보기**](#step-3-stepmaker-패키지-지원-부품)
 
 <br/>
 
@@ -31,13 +34,14 @@ from stepmaker import *
 - I2C RTC `Module Name: rtc`
 - I2C LCD `Module Name: lcd`
 - 초음파 센서 `Module Name: ultrasound`
+- Pico 내장 온도 센서 `Module Name: pico`
+- Pico 내장 LED `Module Name: pico`
 
 <br/>
 
 **현재 개발 중**
 - 피에조 부저 (수동형)
 - 로터리 엔코더
-- 라즈베리파이 피코 내장 온도 센서
 
 추후 더 많은 부품을 지원할 수 있도록 노력하겠습니다.  
 만약 추가를 원하시는 부품이 있을 경우 아래 이메일 주소로 관련 내용을 보내주세요.  
@@ -194,7 +198,7 @@ print(rtc.datetime())
 
 * **초음파센서 사용하기**
 ```python
-#[에제 1] 초음파 센서로 측정한 거리를 터미널에 5초 간격으로 출력하기
+#[에제 1] 초음파 센서로 측정한 거리를 터미널에 5초 간격으로 터미널에 출력하기
 from stepmaker import ultrasound
 import utime
 
@@ -204,11 +208,47 @@ print(ultrasound.measure())
 
 <br/>
 
-* **엔코더 사용하기**
+* **Pico 내장 온도 센서 사용하기**
 ```python
-#[예제 1] 로터리 엔코더 회전 방향 불러오기
+#[예제 1] Pico 내장 온도 센서로 측정한 값을 1초 간격으로 터미널에 출력하기
+from stepmaker import pico
+import utime
+
+built_in_temp = pico.Temp()
+print(built_in_temp.measure())
+utime.sleep(1)
+
+```
+
+<br/>
+
+* **Pico 내장 LED 사용하기**
+```python
+#[예제 1] Pico 내장 LED 켜기
+from stepmaker import pico
+
+built_in_led = pico.Led()
+built_in_led.on()
 ```
 
 ```python
-#[예제 2] 로터리 엔코더 스위치 상태 불러오기
+#[예제 2] Pico 내장 LED 끄기
+from stepmaker import pico
+
+built_in_led = pico.Led()
+built_in_led.off()
+```
+
+```python
+#[예제 3] Pico 내장 LED 1초 간격으로 10번 점멸하기
+from stepmaker import pico
+import utime
+
+built_in_led = pico.Led()
+
+for i in range(10):
+    built_in_led.on()
+    utime.sleep(1)
+    built_in_led.off()
+    utime.sleep(1)
 ```
