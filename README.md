@@ -1,10 +1,14 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 # Release Note
-* **update 22.10.27** version 0.0.0  
-신규 지원: L298N 모터 드라이버, I2C RTC, I2C LCD, 초음파 센서 [**지원 부품 더보기**](#step-3-stepmaker-패키지-지원-부품)
+* **update 22.10.28** version 0.0.3  
+신규 지원: LCD 커스텀 아이콘 5종 추가  
+신규 지원: 피에조 부저(수동형) [**지원 부품 더보기**](#step-3-stepmaker-패키지-지원-부품)
 
 * **update 22.10.28** version 0.0.1  
 신규 지원: Pico 내장 온도 센서, Pico 내장 LED [**지원 부품 더보기**](#step-3-stepmaker-패키지-지원-부품)
+
+* **update 22.10.27** version 0.0.0  
+신규 지원: L298N 모터 드라이버, I2C RTC, I2C LCD, 초음파 센서 [**지원 부품 더보기**](#step-3-stepmaker-패키지-지원-부품)
 
 <br/>
 
@@ -36,12 +40,17 @@ from stepmaker import *
 - 초음파 센서 `Module Name: ultrasound`
 - Pico 내장 온도 센서 `Module Name: pico`
 - Pico 내장 LED `Module Name: pico`
+- 피에조 부저 (수동형) `Module Name: buzzer`
 
 <br/>
 
 **현재 개발 중**
-- 피에조 부저 (수동형)
+- 발광 다이오드 (LED)
+- 각종 스위치
+- 각종 외부 온도 센서
+- 인체 감지 센서 (PIR)
 - 로터리 엔코더
+- 피에조 부저 (스위형)
 
 추후 더 많은 부품을 지원할 수 있도록 노력하겠습니다.  
 만약 추가를 원하시는 부품이 있을 경우 아래 이메일 주소로 관련 내용을 보내주세요.  
@@ -104,7 +113,7 @@ device_name.slow_off()
 
 <br/>
 
-* **I2C 주소 찾기**
+ **I2C 주소 찾기**
 ```python
 #[예제 1] I2C 주소를 찾아 터미널에 출력하기
 from stepmaker import addr
@@ -128,6 +137,12 @@ device_name.putstr("text") #LCD 텍스트 출력
 device_name.backlight_on() #LCD 백라이트 켜기
 device_name.backlight_off() #LCD 백라이트 끄기
 
+#v0.0.3 업데이트 사항
+#커스텀 아이콘 5종 추가
+#temp_icon, celsius_icon, fan_icon, lamp_icon, clock_icon, waterLevel_icon
+
+#자세한 사용 방법은 예제를 참고해주세요
+device_name.putstr(device_name.~~~_icon())
 ```
 
 ```python
@@ -164,6 +179,22 @@ lcd.clear()
 lcd.putstr("world")
 ```
 
+```python
+#[예제 3] LCD에 커스텀 문자 출력하기
+from stepmaker import lcd, addr
+import utime
+
+lcd_i2c_num = 0
+lcd_sda = 16
+lcd_scl = 17
+
+lcd_addr = addr.Find(lcd_i2c_num, lcd_sda, lcd_scl) #i2c번호, sda, scl
+lcd = lcd.I2cPin(lcd_i2c_num, lcd_addr, lcd_sda, lcd_scl) #i2c번호, i2c주소, sda, scl
+
+lcd.move_to(0,0)
+lcd.putstr("Custom Icon" + lcd.temp_icon())
+```
+
 <br/>
 
 * **I2C RTC 사용하기**
@@ -196,7 +227,7 @@ print(rtc.datetime())
 ```
 <br/>
 
-* **초음파센서 사용하기**
+* **초음파 센서 사용하기**
 ```python
 #[에제 1] 초음파 센서로 측정한 거리를 터미널에 5초 간격으로 터미널에 출력하기
 from stepmaker import ultrasound
@@ -251,4 +282,15 @@ for i in range(10):
     utime.sleep(1)
     built_in_led.off()
     utime.sleep(1)
+```
+
+<br/>
+
+* **페에조 부저 (수동형) 사용하기**
+```python
+#[예제 1] 부저를 2초간 켰다가 끄기
+from stepmaker import buzzer
+
+buzzer = buzzer.Pin(28)
+buzzer.beep(2000, 100, 2) #비트, 음량(0 ~ 100), 지속 시간 
 ```

@@ -4,8 +4,8 @@ with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='micropython-stepmaker',
-version='0.0.1',
-description='Stepmaker Package For Stepmaker Kit Users and Rpi Pico Users. It is not an official Micropython package',
+version='0.0.3',
+description='Stepmaker Package For Stepmaker Kit Users and Rpi Pico Users.',
 long_description=long_description,
 long_description_content_type='text/markdown',
 author='HwangJungeon',

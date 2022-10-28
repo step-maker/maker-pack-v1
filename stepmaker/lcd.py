@@ -164,6 +164,33 @@ class LcdApi:
             self.hal_sleep_us(40)
         self.move_to(self.cursor_x, self.cursor_y)
 
+    #Custom Icon
+    def temp_icon(self):
+        self.custom_char(0, bytearray([0x4,0xE,0xA,0xA,0x1B,0x11,0x1B,0xE]))
+        return chr(0)
+
+    def celsius_icon(self):
+        self.custom_char(1, bytearray([0x10,0x6,0x9,0x8,0x8,0x8,0x9,0x6]))
+        return chr(1)
+
+    def fan_icon(self):
+        self.custom_char(2, bytearray([0xE,0x1,0xD,0x1C,0x7,0x16,0x10,0xE]))
+        return chr(2)
+
+    def lamp_icon(self):
+        self.custom_char(3, bytearray([0xE,0x1B,0x11,0x1B,0xE,0xA,0xE,0x0]))
+        return chr(3)
+
+    def clock_icon(self):
+        self.custom_char(4, bytearray([0x0,0xE,0x15,0x15,0x17,0x11,0xE,0x0]))
+        return chr(4)
+
+    def waterLevel_icon(self):
+        self.custom_char(5, bytearray([0x0,0x11,0x1D,0x17,0x11,0x1B,0x1F,0xE]))
+        return chr(5)
+
+    #추가 예정
+
     def hal_backlight_on(self):
         # Allows the hal layer to turn the backlight on.
         # If desired, a derived HAL class will implement this function.
@@ -187,12 +214,6 @@ class LcdApi:
     def hal_sleep_us(self, usecs):
         # Sleep for some time (given in microseconds)
         time.sleep_us(usecs)
-
-    def overwtite(self):
-        self.cursor_x = 0
-        self.cursor_y = 0
-
-        self.move_to(0, 0)
 
 # PCF8574 pin definitions
 MASK_RS = 0x01       # P0
