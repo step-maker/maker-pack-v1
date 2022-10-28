@@ -1,5 +1,8 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 # Release Note
+* **update 22.10.28** version 0.0.4  
+내용: driver 모듈 버그 수정 
+
 * **update 22.10.28** version 0.0.3  
 신규 지원: LCD 커스텀 아이콘 5종 추가  
 신규 지원: 피에조 부저(수동형) [**지원 부품 더보기**](#step-3-stepmaker-패키지-지원-부품)
@@ -113,7 +116,7 @@ device_name.slow_off()
 
 <br/>
 
- **I2C 주소 찾기**
+* **I2C 주소 찾기**
 ```python
 #[예제 1] I2C 주소를 찾아 터미널에 출력하기
 from stepmaker import addr
