@@ -1,5 +1,9 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 # Release Note
+* **update 22.10.29** version 0.0.6  
+내용: ultrasound(초음파 센서) 모듈 오작동 버그 해결  
+내용: 기타 예제 오류 수정
+
 * **update 22.10.28** version 0.0.4  
 내용: driver 모듈 버그 수정 
 
@@ -237,7 +241,10 @@ from stepmaker import ultrasound
 import utime
 
 ultrasound = ultrasound.Pin(echo, trig) #echo, trig
-print(ultrasound.measure())
+
+while True:
+    print(ultrasound.measure())
+    utime.sleep(5)
 ```
 
 <br/>
@@ -249,8 +256,10 @@ from stepmaker import pico
 import utime
 
 built_in_temp = pico.Temp()
-print(built_in_temp.measure())
-utime.sleep(1)
+
+while True:
+    print(built_in_temp.measure())
+    utime.sleep(1)
 
 ```
 

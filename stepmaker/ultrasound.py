@@ -1,7 +1,11 @@
+import machine
+import utime
+from micropython import const
+
 class Pin(object):
     def __init__(self, echo, trig):
-        self.echo = Pin(echo, Pin.IN)
-        self.trig = Pin(trig, Pin.OUT)
+        self.echo = machine.Pin(echo, machine.Pin.IN)
+        self.trig = machine.Pin(trig, machine.Pin.OUT)
 
     def measure(self):
         self.trig.low()
@@ -20,3 +24,4 @@ class Pin(object):
         filter_distance = filter_distance * (1-0.5) + distance * 0.5
         
         return filter_distance
+
