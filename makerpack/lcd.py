@@ -188,7 +188,19 @@ class LcdApi:
     def waterLevel_icon(self):
         self.custom_char(5, bytearray([0x0,0x11,0x1D,0x17,0x11,0x1B,0x1F,0xE]))
         return chr(5)
-
+    
+    def humi_icon(self):
+        self.custom_char(6, bytearray([0x19,0x13,0x05,0x09,0x11,0x11,0x12,0x0C]))
+        return chr(6)
+    
+    def rising_icon(self):
+        self.custom_char(7, bytearray([0x04,0x0E,0x0A,0x1B,0x11,0x1B,0x0A,0x0A]))
+        return chr(7)
+    
+    def rt_tri_icon(self):
+        self.custom_char(8, bytearray([0x08,0x0C,0x0E,0x0F,0x0E,0x0C,0x08,0x00]))
+        return chr(8)
+    
     #추가 예정
 
     def hal_backlight_on(self):

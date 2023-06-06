@@ -1,0 +1,4 @@
+build/
+dist/
+makerpack.egg-info/
+micropython_makerpack.egg-info/

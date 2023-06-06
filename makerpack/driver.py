@@ -26,7 +26,7 @@ class Pin(object):
             self.InA.high()
             self.InB.low()
             self.EN.duty_u16(int(power*655.35))
-            utime.sleep_ms(10)
+            utime.sleep_ms(25)
             self.state = True
     
     def slow_off(self):
@@ -34,5 +34,5 @@ class Pin(object):
             self.InA.high()
             self.InB.low()
             self.EN.duty_u16(int(power*655.35))
-            utime.sleep_ms(10)
+            utime.sleep_ms(25)
             self.state = False
